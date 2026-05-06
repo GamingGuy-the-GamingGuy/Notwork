@@ -2,7 +2,7 @@
   Notwork
 </p>
 
-A lightweight networking library for Roblox that provides **typed remote events with schema-based serialization and efficient buffer encoding**.
+Notwork is a lightweight Roblox networking library that adds type safety, schema validation, and compact binary serialization to RemoteEvents, without changing how you use them.
 
 ---
 
@@ -75,13 +75,11 @@ Packet Constructors
 ```lua
 local Notwork = require(path.to.Notwork)
 
--- Uses the reliable remote event
--- Creates a typed network packet using a schema definition.
-Notwork.DefinePacket(schema: {[string] : Notwork.DataType}) -> (Packet)
+-- Reliable (guaranteed delivery)
+Notwork.DefinePacket(schema: {[string]: Notwork.DataType}) -> Packet
 
--- Uses the unreliable remote event
--- Creates a typed network packet using a schema definition.
-Notwork.DefineUnreliablePacket(schema: {[string] : Notwork.DataType}) -> (Packet)
+-- Unreliable (may drop, lower overhead)
+Notwork.DefineUnreliablePacket(schema: {[string]: Notwork.DataType}) -> Packet
 
 --Example:
 local ReliablePacket = Notwork.DefinePacket({
@@ -106,7 +104,7 @@ Packet:FireServer(Data: {[string]: any})
 
 -- Can only be called from the server
 Packet:FireClient(Player: Player, Data : {[string]: any})
-Packet:FireAllClients({Data : {[string]: any})
+Packet:FireAllClients(Data : {[string]: any})
 ```
 
 Packet Events
@@ -118,9 +116,23 @@ local Packet = require(path.to.SharedPackets).Packet
 Packet.OnServerEvent:Connect(function(Player: Player, Data: {[string]: any})
 
 -- Can only be listened to on the client
-Packet.OnClientEvent:Connect(function(Player: Player, Data: {[string]: any})
+Packet.OnClientEvent:Connect(function(Data: {[string]: any})
 
 ```
+
+# Reliable vs Unreliable
+
+Similar to Roblox's RemoteEvents, reliable and unreliable events both have the purpose of networking, but do it in slightly different ways.
+
+Reliable (`DefinePacket`)
+- Guaranteed delivery
+- Used for gameplay-critical data
+
+Unreliable (`DefineUnreliablePacket`)
+- May drop packets
+- Lower latency / overhead
+- Used for frequent updates (e.g positions, effects)
+
 
 # How It Works
 
@@ -138,27 +150,19 @@ This provides:
 
 Instead of sending raw tables, data is encoded into a compact buffer format and decoded on the receiving side using the shared schema.
 
-## Why not just use RemoteEvents?
+## Why Not Just Use RemoteEvents?
 
-Roblox RemoteEvents are flexible, but:
+RemoteEvents are:
+- Untyped
+- Unvalidated
+- Inefficient for structured data
 
-- No type safety
+This leads to:
+- Silent bugs
+- Inconsistent data formats
+- Larger network costs
 
-- No schema validation
-
-- Larger serialized payloads
-
-- No enforced structure
-
-Notwork adds a thin layer over RemoteEvents that introduces:
-
-- Typed schemas
-
-- Automatic serialization
-
-- Structured event APIs
-
-- Safer networking patterns
+Notwork solves all three without changing your workflow.
 
 ## Supported Types
 Notwork.string
@@ -209,9 +213,10 @@ Notwork is designed to:
 
 - Prioritize performance and clarity
 
-# Notes
-Always define packets in a shared module
+## Limitations
 
-Keep schemas consistent between client and server
+- Packets must be defined ahead of time
+  
+- Not intended for dynamic runtime packet creation
 
-Notwork is not designed for dynamic event connections, i.e Disconnections or Packet's being created at runtime
+- Does NOT have any Disconnect options for Packets
