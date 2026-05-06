@@ -1,0 +1,1 @@
+return {Name = "vector2int16", Type = "Vector2int16"} :: Vector2int16

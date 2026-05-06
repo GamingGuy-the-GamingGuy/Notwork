@@ -1,0 +1,1 @@
+return {Name = "string", Type = "string"} :: string

@@ -1,0 +1,1 @@
+return {Name = "bool", Type = "boolean"} :: boolean

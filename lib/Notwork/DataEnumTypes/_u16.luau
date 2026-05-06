@@ -1,0 +1,1 @@
+return {Name = "u16", Type = "number"} :: number
