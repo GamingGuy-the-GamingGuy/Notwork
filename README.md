@@ -1,6 +1,4 @@
-<p align="center">
-  Notwork
-</p>
+# Notwork
 
 Notwork is a lightweight Roblox networking library that adds type safety, schema validation, and compact binary serialization to RemoteEvents, without changing how you use them.
 
@@ -69,9 +67,11 @@ Packet:FireServer({
 })
 ```
 
+---
+
 ## API
 
-Packet Constructors
+### Packet Constructors
 ```lua
 local Notwork = require(path.to.Notwork)
 
@@ -93,7 +93,7 @@ local UnreliablePacket = Notwork.DefineUnreliablePacket({
 })
 ```
 
-Packet Methods
+### Packet Methods
 ```lua
 local Packet = require(path.to.SharedPackets).Packet
 
@@ -107,7 +107,7 @@ Packet:FireClient(Player: Player, Data : {[string]: any})
 Packet:FireAllClients(Data : {[string]: any})
 ```
 
-Packet Events
+### Packet Events
 
 ```lua
 local Packet = require(path.to.SharedPackets).Packet
@@ -119,8 +119,9 @@ Packet.OnServerEvent:Connect(function(Player: Player, Data: {[string]: any})
 Packet.OnClientEvent:Connect(function(Data: {[string]: any})
 
 ```
+---
 
-# Reliable vs Unreliable
+## Reliable vs Unreliable
 
 Similar to Roblox's RemoteEvents, reliable and unreliable events both have the purpose of networking, but do it in slightly different ways.
 
@@ -133,8 +134,9 @@ Unreliable (`DefineUnreliablePacket`)
 - Lower latency / overhead
 - Used for frequent updates (e.g positions, effects)
 
+---
 
-# How It Works
+## How It Works
 
 Notwork serializes structured Lua tables into compact binary buffers before sending them over Roblox RemoteEvents.
 
@@ -150,6 +152,8 @@ This provides:
 
 Instead of sending raw tables, data is encoded into a compact buffer format and decoded on the receiving side using the shared schema.
 
+---
+
 ## Why Not Just Use RemoteEvents?
 
 RemoteEvents are:
@@ -164,54 +168,48 @@ This leads to:
 
 Notwork solves all three without changing your workflow.
 
+---
+
 ## Supported Types
-Notwork.string
+`Notwork.string`
 
-Notwork.number
+`Notwork.number`
 
-Notwork.any
+`Notwork.any`
 
-Notwork.bool
+`Notwork.bool`
 
-Notwork.f32
+`Notwork.f32`
 
-Notwork.f64
+`Notwork.f64`
 
-Notwork.i8
+`Notwork.i8`
 
-Notwork.i16
+`Notwork.i16`
 
-Notwork.i32
+`Notwork.i32`
 
-Notwork.u16
+`Notwork.u16`
 
-Notwork.u32
+`Notwork.u32`
 
-Notwork.instance
+`Notwork.instance`
 
-Notwork.vector2
+`Notwork.vector2`
 
-Notwork.vector2int16
+`Notwork.vector2int16`
 
-Notwork.vector3
+`Notwork.vector3`
 
-Notwork.vector3int16
+`Notwork.vector3int16`
 
-Notwork.udim
+`Notwork.udim`
 
-Notwork.udim2
+`Notwork.udim2`
 
-Notwork.cframe
+`Notwork.cframe`
 
-## Design Philosophy
-
-Notwork is designed to:
-
-- Stay close to Roblox primitives
-
-- Avoid unnecessary abstraction
-
-- Prioritize performance and clarity
+---
 
 ## Limitations
 
