@@ -1,6 +1,6 @@
 [package]
 name = "gamingguy84/notwork"
-version = "0.1.0"
+version = "0.1.1"
 description = "lightweight Roblox networking library that adds type safety, schema validation, and compact binary serialization to RemoteEvents."
 license = "MIT"
 authors = ["GamingGuy84"]
