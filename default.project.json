@@ -1,6 +1,6 @@
 {
   "name": "notwork",
   "tree": {
-    "$path": "lib/notwork.lua"
+    "$path": "lib/notwork.luau"
   }
 }
