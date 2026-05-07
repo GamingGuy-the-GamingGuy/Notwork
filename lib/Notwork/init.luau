@@ -15,10 +15,8 @@ Notwork.RemoteEvent, Notwork.UnreliableRemoteEvent = RemoteEvents.RemoteEvent, R
 
 type Packet<T> = Annotations.Packet<T>
 
-type Struct = Annotations.Struct
-type DataTypes = Annotations.DataTypes
+type DataTypes = Annotations.DataEnumTypes
 
--- Generates a ID
 -- Guaranteed to have no overlap between packet ID's
 local function GenerateId<T>(Packet : Packet<T>)
     local callerPath = debug.info(2, "s")
@@ -53,8 +51,12 @@ local function constructPacket<T>(PacketInfo : T, Type : RemoteEvent | Unreliabl
     return Packet
 end
 
-function Notwork.Struct(Struct : {[string] : keyof<DataTypes>}) : Struct
-    
+function Notwork.Array(array : {keyof<DataTypes>})
+    return {Name = "Array", Type = "table", Data = array}
+end
+
+function Notwork.Dict(dict : {[string] : keyof<DataTypes>})
+    return {Name = "Dict", Type = "table", Data = dict}
 end
 
 function Notwork.DefinePacket<T>(PacketInfo: T): Packet<T>
@@ -69,6 +71,8 @@ end
 local returnedNotwork = {
     DefinePacket = Notwork.DefinePacket, 
     DefineUnreliablePacket = Notwork.DefineUnreliablePacket,
+    Array = Notwork.Array,
+    Dict = Notwork.Dict,
     Struct = Notwork.Struct,
     _Packets = Notwork._Packets,
     RemoteEvent = Notwork.RemoteEvent :: RemoteEvent,

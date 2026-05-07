@@ -19,9 +19,11 @@ export type Packet<T> = {
 } & PacketMethods<T>
 
 export type Notwork = DataEnumTypes & {
-    DefinePacket : <T>(PacketInfo : T) -> (Packet<T>),
-    DefineUnreliablePacket : <T>(PacketInfo : T) -> (Packet<T>),
-}
+    DefinePacket : <T>(PacketInfo : T) -> Packet<T>,
+    DefineUnreliablePacket : <T>(PacketInfo : T) -> Packet<T>,
 
+    Dict : <T>(t: T) -> T,
+    Array : <T>({T}) -> {T},
+}
 
 return {}

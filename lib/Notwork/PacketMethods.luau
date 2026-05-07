@@ -36,7 +36,6 @@ end
 
 function PacketMethods.FireClient<T>(self: Packet<T>, Player : Player, Data : Packet<T>)
     if typeof(Player) ~= "Instance" then 
-        print(Data.PacketInfo)
         error("Player is not of type Instance for packet (See packet information above)")
     end
 

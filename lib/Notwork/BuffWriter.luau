@@ -191,12 +191,16 @@ function BuffWriter.bool(value : boolean)
 	cursor += 1
 end
 
+function BuffWriter.array(value : {any})
+    
+end
+
 function BuffWriter.copy(value)
 	buffer.copy(buff, cursor, value)
 	cursor += buffer.len(value)
 end
 
-function BuffWriter.Write(Channel : {Size : number, Cursor : number, References : {}, buff : buffer}, writer : () -> (), Id : number, Data : {})
+function BuffWriter.Write(Channel : {Size : number, Cursor : number, References : {}, buff : buffer}, Id : number, Data : {}, writer : () -> ())
     Size = Channel.Size
     cursor = Channel.Cursor
     references = Channel.References

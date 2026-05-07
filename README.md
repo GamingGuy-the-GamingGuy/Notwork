@@ -209,6 +209,10 @@ Notwork solves all three without changing your workflow.
 
 `Notwork.cframe`
 
+`Notwork.Array`
+
+`Notwork.Dict`
+
 ---
 
 ## Limitations

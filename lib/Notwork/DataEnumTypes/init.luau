@@ -48,7 +48,6 @@ local DataTypes = {
     -- UI & visuals
     udim = _udim,
     udim2 = _udim2,
-    --color3 = color3,
 
     -- misc
     --table = table,
