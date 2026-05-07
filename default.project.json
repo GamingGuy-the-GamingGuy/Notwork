@@ -1,24 +1,6 @@
 {
-  "name": "Notwork",
+  "name": "notwork",
   "tree": {
-    "$className": "DataModel",
-    "ReplicatedStorage": {
-      "$className": "ReplicatedStorage",
-      "$ignoreUnknownInstances": true,
-      "$path": "lib"
-    },
-    "ServerScriptService": {
-      "$className": "ServerScriptService",
-      "$path": "testing_server"
-    },
-    "StarterPlayer": {
-      "$className": "StarterPlayer",
-      "StarterPlayerScripts": {
-        "$className": "StarterPlayerScripts",
-        "$ignoreUnknownInstances": true,
-        "$path": "testing_client"
-      },
-      "$ignoreUnknownInstances": true
-    }
+    "$path": "lib/notwork.lua"
   }
 }
