@@ -51,11 +51,11 @@ local function constructPacket<T>(PacketInfo : T, Type : RemoteEvent | Unreliabl
     return Packet
 end
 
-function Notwork.Array(array : {keyof<DataTypes>})
+function Notwork.array(array : {keyof<DataTypes>})
     return {Name = "Array", Type = "table", Data = array}
 end
 
-function Notwork.Dict(dict : {[string] : keyof<DataTypes>})
+function Notwork.dict(dict : {[string] : keyof<DataTypes>})
     return {Name = "Dict", Type = "table", Data = dict}
 end
 

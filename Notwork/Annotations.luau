@@ -22,8 +22,8 @@ export type Notwork = DataEnumTypes & {
     DefinePacket : <T>(PacketInfo : T) -> Packet<T>,
     DefineUnreliablePacket : <T>(PacketInfo : T) -> Packet<T>,
 
-    Dict : <T>(t: T) -> T,
-    Array : <T>({T}) -> {T},
+    dict : <T>(t: T) -> T,
+    array : <T>({T}) -> {T},
 }
 
 return {}
